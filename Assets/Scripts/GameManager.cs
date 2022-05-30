@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject wallClosed, wallOpen;
 
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip wallOpensSound;
 
     private void Awake()
@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
         wallClosed.SetActive(true);
         wallOpen.SetActive(false);
 
-        audioSource = wallOpen.GetComponent<AudioSource>();
-
         snappableGhost1 = ghost1.GetComponent<SnappableObject>();
         snappableGhost2 = ghost2.GetComponent<SnappableObject>();
         snappableGhost3 = ghost3.GetComponent<SnappableObject>();
@@ -54,9 +52,9 @@ public class GameManager : MonoBehaviour
         if (resultGhost1 && resultGhost2 && resultGhost3)
         {
             // GAME SOLVED
-            audioSource.PlayOneShot(wallOpensSound, 0.6f);
-            wallClosed.SetActive(false);
+            audioSource.PlayOneShot(wallOpensSound, 0.4f);
             wallOpen.SetActive(true);
+            wallClosed.SetActive(false);            
             canGrabGhosts = false;
         }
     }
